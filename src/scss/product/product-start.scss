@@ -1,0 +1,19 @@
+.product-stars{
+  display: flex;
+  cursor: pointer;
+  padding-top: 2px;
+  margin-left: -3px;
+  .star{
+    display: block;
+    width: 9px;
+    height: 9px;
+    @include backgr(cover, center);
+    background-image: url('../img/star-empty.png');
+    margin-right: 3px;
+    margin-left: 3px;
+
+    &.active{
+      background-image: url('../img/star.png');
+    }
+  }
+}

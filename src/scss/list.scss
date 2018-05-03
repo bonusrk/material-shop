@@ -1,0 +1,42 @@
+.list{
+  padding-top: 3px;
+
+
+  &__item{
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 45px;
+    padding-right: 30px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 3px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &__name{
+    font-weight: 500;
+    text-transform: uppercase;
+    color: $text-gray;
+  }
+
+  &__img{
+    height: 100%;
+    left: 40%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+    img{
+      max-height: 100%;
+      //max-width: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,37 @@
+nav {
+  background-color: $main-color;
+
+  &.nav-extended{
+    padding-bottom: 20px;
+  }
+
+  .nav-padding-left{
+    padding-left: 20px;
+  }
+
+  .nav-wrapper{
+    padding-right: 15px;
+  }
+
+  a.brand-logo {
+    left: 95px;
+    font-size: 20px;
+  }
+  form{
+    width: 100%;
+    float: right;
+  }
+
+  .material-icons{
+    float: right;
+    cursor: pointer;
+  }
+
+  .breadcrumb{
+    font-size: 15px;
+
+    &:before{
+      font-size: 20px;
+    }
+  }
+}

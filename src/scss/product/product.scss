@@ -1,0 +1,36 @@
+.product{
+  display: block;
+  padding-bottom: 15px;
+  &__img{
+    background-color: #fff;
+    padding: 10px;
+    border-bottom:4px solid $main-color;
+    img{
+      height: 100%;
+    }
+  }
+
+  &__name{
+    font-weight: 500;
+    display: block;
+    color: $product__name;
+    letter-spacing:normal;
+    font-size: 13px;
+  }
+
+  &__disc{
+    font-weight: 400;
+    display: block;
+    color: $product__disc;
+    font-size: 10px;
+  }
+
+  &__price{
+    font-weight: 500;
+    display: block;
+    color: $product__name;
+    font-size: 13px;
+  }
+
+
+}
