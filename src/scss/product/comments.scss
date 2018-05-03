@@ -1,0 +1,38 @@
+.comment{
+  &__item{
+    padding-bottom: 20px;
+  }
+
+  &__info{
+
+  }
+
+  &__name{
+    color: $comment-name;
+    padding-bottom: 10px;
+    display: block;
+  }
+
+  &__props{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__date{
+    color: $comment-date;
+  }
+
+  &__text{
+    p{
+      color: $comment-text;
+    }
+  }
+
+  .product-stars{
+    .star{
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

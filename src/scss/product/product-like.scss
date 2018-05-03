@@ -1,0 +1,11 @@
+.product-like{
+  margin-top: 15px;
+  span {
+    float: right;
+    display: block;
+    width: 15px;
+    height: 13px;
+    @include backgr(cover, center);
+    background-image: url('../img/favorite.svg');
+  }
+}
