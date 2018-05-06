@@ -6,3 +6,20 @@ body{
 .z-depth-1{
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
+
+
+.btn{
+  background-color: $main-color;
+  &:hover{
+    background-color: #4BBDCD;
+  }
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid $main-color;
+  box-shadow: 0 1px 0 0 $main-color;
+
+  &+label{
+    color: $main-color;
+  }
+}

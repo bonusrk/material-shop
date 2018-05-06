@@ -1,0 +1,26 @@
+.total{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  &__items{
+
+  }
+
+  &__sub{
+    color: $total;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  &__count{
+    color: $total-items;
+    font-size: 14px;
+  }
+
+  &__price{
+    color: $total;
+    font-weight: 500;
+  }
+}

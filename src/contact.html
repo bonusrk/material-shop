@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="window">
+    This is 'mobile only' website, please narrow the window. Thank you!
+</div>
+<nav>
+    <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="cart.html"><i class="material-icons">shopping_cart</i></a>
+    </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="details.html">Products</a></li>
+    <li><a href="product-item.html">Product page</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="main-block">
+    <div class="content">
+        <div class="row">
+            <form class="col s12">
+                <div class="input-field">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+                <div class="input-field">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field">
+                    <input id="phone" type="tel" class="validate">
+                    <label for="phone">Phone</label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="block-bottom">
+        <a class="waves-effect waves-light btn">send</a>
+    </div>
+</div>
+
+</body>
+<script src="../public/bundle.js"></script>
+</html>
