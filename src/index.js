@@ -11,13 +11,13 @@ import thunk from 'redux-thunk'
 import {syncHistoryWithStore} from 'react-router-redux'
 import {Router, Route, browserHistory} from 'react-router'
 import {Provider} from 'react-redux'
-
+import { HashRouter } from 'react-router-dom'
 
 import reducers from './components/reducers'
 
 import Layout from './components/layout';
 import Home from './components/home';
-
+import ProductItems from './components/product-items';
 
 const store = createStore(reducers, composeWithDevTools(
     applyMiddleware(thunk)
@@ -31,6 +31,7 @@ ReactDOM.render(
         <Router history={history}>
             <Route component={Layout}>
                 <Route path='/' component={Home}/>
+                <Route path={'category/:id/:id'} component={ProductItems}/>
             </Route>
         </Router>
     </Provider>,

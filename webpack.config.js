@@ -6,11 +6,11 @@ const webpack = require('webpack');
 
 module.exports = {
     devtool: 'source-map',
-    entry: './src/index.js',
+    entry: ['babel-polyfill','./src/index.js'],
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js',
-        publicPath: 'public/'
+        publicPath: 'src/'
     },
     performance: {
         hints: process.env.NODE_ENV === 'production' ? "warning" : false
@@ -19,7 +19,10 @@ module.exports = {
         contentBase: [path.join(__dirname, 'src'), path.join(__dirname, 'public')],
         watchContentBase: true,
         hotOnly: true,
-        stats: 'errors-only'
+        stats: 'errors-only',
+        historyApiFallback:{
+            index:'./src/index.html'
+        },
     },
     module: {
         rules: [
