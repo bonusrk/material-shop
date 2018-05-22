@@ -35,7 +35,7 @@ class ProductItems extends React.Component{
     renderClothes(clothe, index) {
         return (
             <div className="col s6" key={index}>
-                <a className="product ">
+                <Link to={`clothes/${clothe.id}`} className="product ">
                     <div className="product__img z-depth-1"><img src={clothe.image}/></div>
                     <div className="product__info">
                         <span className="product__name">{clothe.name}</span>
@@ -43,7 +43,7 @@ class ProductItems extends React.Component{
                         {this.setRating(clothe.rating)}
                         <span className="product__price">{clothe.price}</span>
                     </div>
-                </a>
+                </Link>
             </div>
         )
     }
@@ -51,7 +51,7 @@ class ProductItems extends React.Component{
 
     render() {
        console.log('this.props.clothes ', this.props.clothes );
-        const data =Object.values(this.props.clothes)
+        const data = Object.values(this.props.clothes)
         console.log('data', data);
         return (
             <div className="content">

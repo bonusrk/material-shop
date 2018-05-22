@@ -21,3 +21,21 @@ export const getCategories = (state) => {
 
     return data
 }*/
+//todo: add clothes
+export const getClotheById = (state, id) => R.prop(id, state.clothesInCategory)
+
+export const getBasketClothesWithCount = state => {
+    const clotheCount = id => R.compose(
+        R.length,
+        R.filter(basketId => R.equals(id, basketId))
+    )(state.basket)
+    const clotheWithCount = clothe => R.assoc('count', clotheCount(clothe.id), clothe)
+
+    const uniqueIds = R.uniq(state.basket)
+    const clothes = R.compose(
+        R.map(clotheWithCount),
+        R.map(id => getClotheById(state, id))
+    )(uniqueIds)
+
+    return clothes
+}

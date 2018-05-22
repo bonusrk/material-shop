@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js',
-        publicPath: 'src/'
+        publicPath: 'public/'
     },
     performance: {
         hints: process.env.NODE_ENV === 'production' ? "warning" : false

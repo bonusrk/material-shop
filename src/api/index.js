@@ -21,3 +21,10 @@ export const fetchCategories = async () => {
         resolve(categories)
     })
 }
+
+export const fetchClothesById = async id => {
+    return new Promise((resolve, reject)=> {
+        const clothe = R.find(R.propEq('id', id), clothes)
+        resolve(clothe)
+    })
+}

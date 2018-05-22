@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 import R from 'ramda';
 import {
     fetchCategories
@@ -41,9 +40,7 @@ class CategoryList extends React.Component {
                     <div className="list">
                         {data.map((category, index) => this.renderCategories(category, index))}
                     </div>
-
                 </div>
-
         );
     }
 }
