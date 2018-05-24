@@ -7,10 +7,10 @@ import clothesById from './clothesById';
 import basket from './basket';
 
 export default combineReducers({
-    routing: routerReducer,
     clothes,
     categories,
     clothesInCategory,
     clothesById,
-    basket
+    basket,
+    routing: routerReducer
 });

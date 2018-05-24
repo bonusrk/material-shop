@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $('.sidenav').sidenav();
-    $('.tabs').tabs();
+   /* $('.sidenav').sidenav();
+    $('.tabs').tabs();*/
 
-    $('.product-set__item').click(function () {
+  /*  $('.product-set__item').click(function () {
         $(this)
             .addClass('active')
             .parent()
@@ -10,9 +10,15 @@ $(document).ready(function () {
             .not(this)
             .removeClass('active')
 
-    })
+    })*/
 
     function setHeight() {
+        /*!//
+        let products = document.querySelectorAll('.product__img')
+        console.log('document.querySelector(\'.product__img\')', document.querySelector('.product__img'));
+        // const productWidth = document.querySelector('.product__img').style.width
+        products.map((product) =>  product.style.height = productWidth)*/
+        //
         $('.product__img').height($('.product__img').width());
     }
 

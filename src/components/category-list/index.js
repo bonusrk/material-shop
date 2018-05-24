@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import R from 'ramda';
 import {
-    fetchCategories
+    fetchCategories,
+    fetchClothes
 } from '../../actions/index';
 
 
@@ -16,11 +17,12 @@ class CategoryList extends React.Component {
 */
     componentDidMount() {
         this.props.fetchCategories()
+        this.props.fetchClothes()
     }
 
     renderCategories(category, index) {
         return (
-                <Link to={`category/${this.props.category}/${category.category}`}  key={index}
+                <Link to={`category/${category.id}`}  key={index}
                       className="waves-effect z-depth-1 list__item">
                     <span className="list__name">{category.name}</span>
                     <div className="list__img"><img src={category.image} alt=""/></div>
@@ -50,7 +52,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = {
-    fetchCategories
+    fetchCategories,
+    fetchClothes
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)

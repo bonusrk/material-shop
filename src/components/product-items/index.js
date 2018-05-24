@@ -3,10 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import R from 'ramda';
-import {
-    fetchClothes,
-    fetchClothesInCategory
-} from '../../actions/index';
+
 
 import {
     getClothesInCategory
@@ -14,9 +11,6 @@ import {
 
 class ProductItems extends React.Component{
 
-    componentDidMount(){
-        this.props.fetchClothesInCategory(this.props.params)
-    }
 
     setRating(rating){
         let rows= [];
@@ -32,16 +26,25 @@ class ProductItems extends React.Component{
 
     }
 
+    setHeight(){
+        let products = document.querySelectorAll('.product__img')
+        console.log('document.querySelector(\'.product__img\')', document.querySelector('.product__img'));
+        console.log('products', products);
+        // products.map((product) => product.style.height = document.querySelector('.product__img').style.width)
+        // const productWidth = document.querySelector('.product__img').style.width
+        // products.map((product) =>  product.style.height = productWidth)
+    }
+
     renderClothes(clothe, index) {
         return (
-            <div className="col s6" key={index}>
+            <div className="product__griditem" key={index}>
                 <Link to={`clothes/${clothe.id}`} className="product ">
                     <div className="product__img z-depth-1"><img src={clothe.image}/></div>
                     <div className="product__info">
                         <span className="product__name">{clothe.name}</span>
                         <span className="product__disc">{clothe.description}</span>
                         {this.setRating(clothe.rating)}
-                        <span className="product__price">{clothe.price}</span>
+                        <span className="product__price">${clothe.price}</span>
                     </div>
                 </Link>
             </div>
@@ -51,12 +54,17 @@ class ProductItems extends React.Component{
 
     render() {
        console.log('this.props.clothes ', this.props.clothes );
-        const data = Object.values(this.props.clothes)
+        // const data = Object.values(this.props.clothes)
+        const data = this.props.clothes
         console.log('data', data);
         return (
             <div className="content">
-                <div className="row">
-                    { data.map((clothe, index) => this.renderClothes(clothe, index))}
+                <div className="product__grid">
+                    { data.map((clothe, index) => this.renderClothes(clothe, index))
+
+                    }
+                    {this.setHeight()}
+                    {/*{this.setHeight()}*/}
                 </div>
             </div>
 
@@ -67,12 +75,9 @@ class ProductItems extends React.Component{
 
 
 const mapStateToProps = (state, ownProps) => ({
-    clothes: state.clothesInCategory,
+    clothes: getClothesInCategory(state, ownProps)
 })
 
-const mapDispatchToProps = {
-    fetchClothes,
-    fetchClothesInCategory
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductItems)
+
+export default connect(mapStateToProps)(ProductItems)

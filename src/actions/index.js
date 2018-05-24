@@ -17,7 +17,12 @@ import {
 
     ADD_CLOTHE_TO_BASKET,
     REMOVE_CLOTHE_FROM_BASKET,
-    CLEAR_BASKET
+    CLEAR_BASKET,
+
+    CHANGE_COLOR,
+    CHANGE_SIZE,
+
+    BASKET_ITEM_MINUS
 } from '../actionTypes'
 
 
@@ -103,17 +108,42 @@ export const fetchClothesById = id => async dispatch => {
 }
 
 
-export const addClotheToBasket = id => dispatch => {
+export const addClotheToBasket = clothe => dispatch => {
     dispatch({
         type: ADD_CLOTHE_TO_BASKET,
-        payload: id
+        payload: clothe
     })
 }
 
 
-export const removeClotheFromBasket = id => dispatch => {
+export const removeClotheFromBasket = clothe => dispatch => {
     dispatch({
         type: REMOVE_CLOTHE_FROM_BASKET,
-        payload: id
+        payload: clothe
     })
+}
+
+export const changeColor = colorId => dispatch => {
+    dispatch({
+        type: CHANGE_COLOR,
+        payload: colorId
+    })
+}
+
+export const changeSize = sizeId => dispatch => {
+    dispatch({
+        type: CHANGE_SIZE,
+        payload: sizeId
+    })
+}
+
+
+export const basketItemMinus = clothe => dispatch => {
+    if (clothe.count > 1) {
+        dispatch({
+            type: BASKET_ITEM_MINUS,
+            payload: clothe
+        })
+    }
+
 }

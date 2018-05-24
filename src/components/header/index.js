@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import ShoppingCart from './cart';
 
 const Header = () => {
     return (
@@ -7,7 +8,7 @@ const Header = () => {
             <div className="nav-wrapper">
                 <Link to={'/'} className="brand-logo">Logo</Link>
                 <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                <Link to={'/basket'} ><i className="material-icons">shopping_cart</i></Link>
+                <ShoppingCart/>
             </div>
         </nav>
     )

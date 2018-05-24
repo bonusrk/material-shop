@@ -1,11 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    getBasketClothesWithCount
+    getBasketClothesWithCount,
+    getBasketItemsCount,
+    getTotalPrice
 } from '../../selectors';
 import {
-    removeClotheFromBasket
+    removeClotheFromBasket,
+    basketItemMinus,
+    addClotheToBasket
 } from '../../actions';
+
+import Total from './total';
 
 class Basket extends React.Component {
 
@@ -17,13 +23,18 @@ class Basket extends React.Component {
                     <span className="product__name">{clothe.name}</span>
                     <span className="product__disc">{clothe.description}</span>
                     <div className="cart__counter">
-                        <div className="button plus"></div>
+                        <div  onClick={()=> {
+                             if( clothe.count > 1){
+                                 this.props.basketItemMinus(clothe)}
+                             }
+                            }  className={`button minus ${clothe.count === 1 ? 'disabled' : ''}`}/>
                         <div className="number">{clothe.count}</div>
-                        <div className="button minus"></div>
+                        <div onClick={()=>this.props.addClotheToBasket(clothe)}  className="button plus "/>
                     </div>
                     <span className="product__price">${clothe.price}</span>
+                    <span className="product__price">{clothe.currentColor.id}</span>
                 </div>
-                <div onClick={()=>this.props.removeClotheFromBasket(clothe.id)} className="cart__delete waves-effect waves-light">
+                <div onClick={()=>this.props.removeClotheFromBasket(clothe)} className="cart__delete waves-effect waves-light">
                     <i className="material-icons">delete</i>
                 </div>
             </div>
@@ -36,10 +47,23 @@ class Basket extends React.Component {
         return (
             <div className="main-block">
                 <div className="content">
-                    <div className="cart">
-                        {basket.map((clothe, index)=> this.renderBasketItem(clothe, index))}
+                    <div className="cart">{
+                        basket.length > 0 ?
+                            basket.map((clothe, index)=> this.renderBasketItem(clothe, index))
+                            :
+                            <div>Your shopping cart is empty</div>
+                    }
+
                     </div>
                 </div>
+                {
+                    basket.length > 0 ?
+                        <Total totalItems={this.props.cartCount} totalPrice={this.props.totalPrice}/>
+                        :
+                        null
+                }
+
+                
             </div>
 
         );
@@ -47,11 +71,15 @@ class Basket extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   basket:getBasketClothesWithCount(state)
+   basket: getBasketClothesWithCount(state),
+   cartCount: getBasketItemsCount(state),
+   totalPrice: getTotalPrice(state)
 })
 
 const mapDispatchToProps = {
-    removeClotheFromBasket
+    removeClotheFromBasket,
+    basketItemMinus,
+    addClotheToBasket
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Basket)

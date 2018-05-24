@@ -3,24 +3,29 @@ import {connect} from 'react-redux';
 import R from 'ramda';
 import {
     fetchClothesById,
-    addClotheToBasket
+    addClotheToBasket,
+    changeColor,
+    changeSize
 } from '../../actions/index';
 import Comments from './comments';
 import Color from './color';
+import Size from './size';
 
 class ProductItem extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state={
-            currentColor: null
-        }
 
         this.setCurrentColor = this.setCurrentColor.bind(this)
+        this.setCurrentSize = this.setCurrentSize.bind(this)
     }
 
     setCurrentColor(id){
-        this.setState({currentColor: id})
+        this.props.changeColor(id)
+    }
+
+    setCurrentSize(id){
+        this.props.changeSize(id)
     }
 
     componentDidMount() {
@@ -47,6 +52,8 @@ class ProductItem extends React.Component {
     }
 
 
+
+
     setDetails(detail, index){
         return (
             <p key={index}>{detail}</p>
@@ -57,8 +64,12 @@ class ProductItem extends React.Component {
 
     render() {
         const {clothe} = this.props
-        const details = clothe.details || [];
+        const details = clothe.details || []
         const color = clothe.color || []
+        const size = clothe.size || []
+        const currentColor = clothe.currentColor || {}
+        const currentSize = clothe.currentSize || []
+        console.log('render ProductItem');
         return (
             <div className="product-item ">
 
@@ -78,31 +89,11 @@ class ProductItem extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Color color={color} setCurrentColor = {this.setCurrentColor}/>
-                    {/*<div className="product-item__block">
-                        <span className="product-item__title">Color</span>
-                        <div className="product-set">
-                            <span className="product-set__item color color-1"></span>
-                            <span className="product-set__item color color-2"></span>
-                            <span className="product-set__item color color-3 active"></span>
-                            <span className="product-set__item color color-4"></span>
-                            <span className="product-set__item color color-5"></span>
-                            <span className="product-set__item color color-6"></span>
-                        </div>
-                    </div>*/}
-                    <div className="product-item__block">
-                        <span className="product-item__title">Size</span>
-                        <div className="product-set">
-                            <span className="product-set__item size">xs</span>
-                            <span className="product-set__item size">s</span>
-                            <span className="product-set__item size active">m</span>
-                            <span className="product-set__item size">l</span>
-                            <span className="product-set__item size">xl</span>
-                        </div>
-                    </div>
+                    <Color color={color} currentColor={currentColor} setCurrentColor = {this.setCurrentColor}/>
+                    <Size size={size} currentSize={currentSize} setCurrentSize={this.setCurrentSize} />
                     <div className="product-item__block product-item__line">
                         <a className="waves-effect waves-light btn ">BUY NOW</a>
-                        <button onClick={()=> this.props.addClotheToBasket(clothe.id)} className="waves-effect waves-light btn ">Add to Cart</button>
+                        <button onClick={()=> this.props.addClotheToBasket(clothe)} className="waves-effect waves-light btn ">Add to Cart</button>
                     </div>
                     <div className="product-item__block">
                         <span className="product-item__title">Details</span>
@@ -121,7 +112,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = {
     fetchClothesById,
-    addClotheToBasket: addClotheToBasket
+    addClotheToBasket: addClotheToBasket,
+    changeColor,
+    changeSize
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductItem)

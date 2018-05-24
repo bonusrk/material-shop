@@ -33,9 +33,9 @@ ReactDOM.render(
         <Router history={history}>
             <Route component={Layout}>
                 <Route path='/' component={Home}/>
-                <Route path={'category/:id/:id'} component={ProductItems}/>
-                <Route path={'clothes/:id'} component={ProductItem}/>
-                <Route path={'basket'} component={Basket}/>
+                <Route path='category/:id' component={ProductItems}/>
+                <Route path='clothes/:id' component={ProductItem}/>
+                <Route path='basket' component={Basket}/>
             </Route>
         </Router>
     </Provider>,
