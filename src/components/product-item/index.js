@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import R from 'ramda';
 import {
     fetchClothesById,
@@ -92,7 +93,7 @@ class ProductItem extends React.Component {
                     <Color color={color} currentColor={currentColor} setCurrentColor = {this.setCurrentColor}/>
                     <Size size={size} currentSize={currentSize} setCurrentSize={this.setCurrentSize} />
                     <div className="product-item__block product-item__line">
-                        <a className="waves-effect waves-light btn ">BUY NOW</a>
+                        <Link to={`order/${clothe.id}`} className="waves-effect waves-light btn ">BUY NOW</Link>
                         <button onClick={()=> this.props.addClotheToBasket(clothe)} className="waves-effect waves-light btn ">Add to Cart</button>
                     </div>
                     <div className="product-item__block">

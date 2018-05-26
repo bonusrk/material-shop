@@ -36,8 +36,8 @@ export default class Tabs extends React.Component {
             <div className="row tabs-main ">
                 <div className="col s12 z-depth-1" >
                     <ul className="tabs">
-                        <li className="tab col s3"><a className="active" onClick={this.showMan}>Man</a></li>
-                        <li className="tab col s3"><a onClick={this.showWoman}>Woman</a></li>
+                        <li className="tab col s3"><a className={this.state.category==='man' ? 'active': null} onClick={this.showMan}>Man</a></li>
+                        <li className="tab col s3"><a className={this.state.category==='woman' ? 'active': null} onClick={this.showWoman}>Woman</a></li>
                     </ul>
                     <CategoryList category={this.state.category}/>
                 </div>

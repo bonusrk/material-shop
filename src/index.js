@@ -20,6 +20,7 @@ import Home from './components/home';
 import ProductItems from './components/product-items';
 import ProductItem from './components/product-item';
 import Basket from './components/basket';
+import Contact from './components/contact';
 
 const store = createStore(reducers, composeWithDevTools(
     applyMiddleware(thunk)
@@ -36,6 +37,8 @@ ReactDOM.render(
                 <Route path='category/:id' component={ProductItems}/>
                 <Route path='clothes/:id' component={ProductItem}/>
                 <Route path='basket' component={Basket}/>
+                <Route path='order' component={Contact}/>
+                <Route path='order/:id' component={Contact}/>
             </Route>
         </Router>
     </Provider>,

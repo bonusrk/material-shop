@@ -13,12 +13,19 @@
     height: 3px;
   }
 
+  .tab{
+    cursor: pointer;
+    height: 100%;
+  }
+
   .tabs .tab a {
     color: $text-gray;
     font-weight: 500;
 
+
     &.active{
       color: $text-gray;
+      border-bottom:4px solid $main-color;
     }
 
     &:focus{

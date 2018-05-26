@@ -11,7 +11,7 @@ class ShoppingCart extends React.Component {
 
     render() {
         return (
-            <Link to={'/basket'} >{this.props.cartCount}<i className="material-icons">shopping_cart</i></Link>
+            <Link to={'/basket'} > <span className={'cart-count'} >{this.props.cartCount}</span> <i className="material-icons">shopping_cart</i></Link>
         );
     }
 }

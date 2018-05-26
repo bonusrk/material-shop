@@ -1,6 +1,8 @@
 $(document).ready(function () {
-   /* $('.sidenav').sidenav();
+   /*
     $('.tabs').tabs();*/
+
+    $('.sidenav').sidenav();
 
   /*  $('.product-set__item').click(function () {
         $(this)
@@ -19,7 +21,7 @@ $(document).ready(function () {
         // const productWidth = document.querySelector('.product__img').style.width
         products.map((product) =>  product.style.height = productWidth)*/
         //
-        $('.product__img').height($('.product__img').width());
+        // $('.product__img').height($('.product__img').width());
     }
 
     setHeight();

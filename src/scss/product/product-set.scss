@@ -53,17 +53,19 @@
     }
   }
 
-  .size{
-    text-transform: uppercase;
-    color: $text-gray;
-    font-weight: 400;
-    text-align: center;
 
-    &.active{
-      background-color: $main-color;
-      color: white;
-    }
+
+
+}
+
+.size{
+  text-transform: uppercase;
+  color: $text-gray;
+  font-weight: 400;
+  text-align: center;
+
+  &.active{
+    background-color: $main-color;
+    color: white;
   }
-
-
 }

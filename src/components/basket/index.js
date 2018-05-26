@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import {
     getBasketClothesWithCount,
     getBasketItemsCount,
@@ -18,9 +19,9 @@ class Basket extends React.Component {
     renderBasketItem(clothe, index){
         return(
             <div key={index} className="cart__item z-depth-1">
-                <div className="cart__img"><img src={clothe.image} /></div>
+                <Link  to={`clothes/${clothe.id}`}><div className="cart__img"><img src={clothe.image} /></div></Link>
                 <div className="cart__info">
-                    <span className="product__name">{clothe.name}</span>
+                    <Link  to={`clothes/${clothe.id}`}><span className="product__name">{clothe.name}</span></Link>
                     <span className="product__disc">{clothe.description}</span>
                     <div className="cart__counter">
                         <div  onClick={()=> {
@@ -32,7 +33,12 @@ class Basket extends React.Component {
                         <div onClick={()=>this.props.addClotheToBasket(clothe)}  className="button plus "/>
                     </div>
                     <span className="product__price">${clothe.price}</span>
-                    <span className="product__price">{clothe.currentColor.id}</span>
+                    <div className="product__properties">
+                       <div><span className={'property'}>Color: </span><span style={{backgroundColor : clothe.currentColor.color}}
+                                               className={'product-set__item color '}/></div>
+                        <div><span className={'property'}>Size: </span><span className={'product-set__item size active'}>{clothe.currentSize.name}</span></div>
+                    </div>
+
                 </div>
                 <div onClick={()=>this.props.removeClotheFromBasket(clothe)} className="cart__delete waves-effect waves-light">
                     <i className="material-icons">delete</i>

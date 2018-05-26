@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const Total = ({
                    totalItems,
@@ -18,7 +19,7 @@ const Total = ({
                 </div>
                 <span className="total__price">${totalPrice}</span>
             </div>
-            <a className="waves-effect waves-light btn">PROCEED TO CHECKOUT</a>
+            <Link to={'order'} className="waves-effect waves-light btn">PROCEED TO CHECKOUT</Link>
         </div>
     )
 }
