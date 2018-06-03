@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    setRating
-} from '../../../functions';
+import Rating from '../../rating';
 
 const ProductInfo = ({clothe}) => {
 
@@ -16,7 +14,7 @@ const ProductInfo = ({clothe}) => {
                     <span className="product__price">${clothe.price}</span>
                 </div>
                 <div className="">
-                    {setRating(clothe.rating)}
+                    <Rating rating={clothe.rating}/>
                     <div className="product-like">
                         <span/>
                     </div>

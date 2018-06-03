@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import PropTypes from 'prop-types';
-import {
-    setRating
-} from '../../functions';
+import Rating from '../rating';
 
 
 const ProductListItem = ({clothe}) => {
@@ -17,7 +15,7 @@ const ProductListItem = ({clothe}) => {
                 <div className="product__info">
                     <span className="product__name">{clothe.name}</span>
                     <span className="product__disc">{clothe.description}</span>
-                    {setRating(clothe.rating)}
+                    <Rating rating={clothe.rating}/>
                     <span className="product__price">${clothe.price}</span>
                 </div>
             </Link>

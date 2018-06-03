@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    setRating
-} from '../../functions';
+import Rating from '../rating';
 
 const Comment = ({
                      comment
@@ -13,7 +11,7 @@ const Comment = ({
                 <span className="comment__name">{comment.author}</span>
                 <div className="comment__props">
                     <div className="product-stars">
-                        {setRating(comment.rating)}
+                        <Rating rating={comment.rating}/>
                     </div>
                     <span className="comment__date">{comment.data}</span>
                 </div>
