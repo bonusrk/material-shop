@@ -18,7 +18,7 @@ import reducers from './components/reducers'
 import Layout from './components/layout';
 import Home from './components/home';
 import ProductItems from './components/product-items';
-import ProductItem from './components/product-item';
+import ProductItemContainer from './components/product-item';
 import Basket from './components/basket';
 import Contact from './components/contact';
 
@@ -34,11 +34,11 @@ ReactDOM.render(
         <Router history={history}>
             <Route component={Layout}>
                 <Route path='/' component={Home}/>
-                <Route path='category/:id' component={ProductItems}/>
-                <Route path='clothes/:id' component={ProductItem}/>
-                <Route path='basket' component={Basket}/>
-                <Route path='order' component={Contact}/>
-                <Route path='order/:id' component={Contact}/>
+                <Route path='/category/:id' component={ProductItems}/>
+                <Route path='/clothes/:id' component={ProductItemContainer}/>
+                <Route path='/basket' component={Basket}/>
+                <Route path='/order' component={Contact}/>
+                <Route path='/order/:id' component={Contact}/>
             </Route>
         </Router>
     </Provider>,

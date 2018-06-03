@@ -11,7 +11,7 @@ const initialState = {};
 export default (state = initialState, {type, payload}) => {
     switch (type){
         case FETCH_CLOTHE_BY_ID_SUCCESS:
-            return R.merge(state, payload);
+            return payload;
         case CHANGE_COLOR:
             let newState = Object.assign({}, state)
             newState.color.map((color) => {

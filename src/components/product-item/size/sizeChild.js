@@ -1,27 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class SizeChild extends React.Component {
-    constructor(props) {
-        super(props);
-        this.sendSize = this.sendSize.bind(this)
-
-    }
-   sendSize(id){
-        console.log('sendSize', id);
-       this.props.setCurrentSize(id)
-   }
-
-    render() {
-        const {size} = this.props
-        const {currentSize} = this.props
-        return (
-                <span onClick={() => this.sendSize(size.id)}
-                      className={`product-set__item size ${(currentSize.id === size.id? 'active': '')}`}>
+const SizeChild = ({
+                       size,
+                       currentSize,
+                       setCurrentSize
+                   }) => {
+    return (
+        <span onClick={() => setCurrentSize(size.id)}
+              className={`product-set__item size ${(currentSize.id === size.id? 'active': '')}`}>
                     {size.name}</span>
-        );
-    }
+    )
 }
 
-
-
 export default SizeChild
+
+SizeChild.propTypes = {
+    size: PropTypes.object.isRequired,
+    currentSize: PropTypes.object.isRequired,
+    setCurrentSize: PropTypes.func.isRequired
+}

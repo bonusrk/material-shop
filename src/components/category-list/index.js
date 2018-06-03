@@ -1,34 +1,29 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import PropTypes from 'prop-types';
 import R from 'ramda';
 import {
     fetchCategories,
     fetchClothes
 } from '../../actions/index';
 
+import CategoryItem from './categoryItem';
+
 
 class CategoryList extends React.Component {
 
 
-    /* static propTypes  = {
-         category : PropTypes.string.isRequired
+     static propTypes  = {
+         categories : PropTypes.object.isRequired,
+         category : PropTypes.string.isRequired,
+         fetchCategories: PropTypes.func.isRequired,
+         fetchClothes: PropTypes.func.isRequired
      }
-*/
     componentDidMount() {
         this.props.fetchCategories()
         this.props.fetchClothes()
     }
-
-    renderCategories(category, index) {
-        return (
-                <Link to={`category/${category.id}`}  key={index}
-                      className="waves-effect z-depth-1 list__item">
-                    <span className="list__name">{category.name}</span>
-                    <div className="list__img"><img src={category.image} alt=""/></div>
-                </Link>
-        )
-    }
+    
 
 
     render() {
@@ -40,7 +35,7 @@ class CategoryList extends React.Component {
         return (
                 <div id={this.props.category} className="col s12">
                     <div className="list">
-                        {data.map((category, index) => this.renderCategories(category, index))}
+                        {data.map((category, index) => <CategoryItem key={index} category={category} />)}
                     </div>
                 </div>
         );

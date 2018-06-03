@@ -8,7 +8,7 @@ module.exports = {
     devtool: 'source-map',
     entry: ['babel-polyfill','./src/index.js'],
     output: {
-        path: path.join(__dirname, 'public'),
+        path: path.join(__dirname, '/public'),
         filename: 'bundle.js',
         publicPath: 'public/'
     },
@@ -32,7 +32,7 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['env', 'react']
+                            presets: ['env', 'react', 'stage-1']
                         }
                     }
                 ]

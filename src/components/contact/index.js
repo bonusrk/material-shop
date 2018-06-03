@@ -1,9 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import PropTypes from 'prop-types';
+
 import InputComponent from '../input';
+import BasketItem from './basketItem';
+
 import {
-    fetchClothesById,
-} from '../../actions/index';
+    getBasketClothesWithCount
+} from '../../selectors';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -22,9 +27,11 @@ class Contact extends React.Component {
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        this.props.fetchClothesById(this.props.params.id)
+    static propTypes = {
+        clothe: PropTypes.object.isRequired,
+        basket: PropTypes.array.isRequired
     }
+
 
     handleChangeName(event) {
         this.setState({firstName: event.target.value});
@@ -42,27 +49,11 @@ class Contact extends React.Component {
         this.setState({phone: event.target.value});
     }
 
-    renderItem() {
-        const {clothe} = this.props
 
-        return (
-            <div className="cart">
-                <div className="cart__item z-depth-1">
-                        <div className="cart__img"><img src={`../${clothe.image}`}/></div>
-                    <div className="cart__info">
-                        <span className="product__name">{clothe.name}</span>
-                        <span className="product__disc">{clothe.description}</span>
-
-                        <span className="product__price">${clothe.price}</span>
-                        {/*<span className="product__price">{clothe.currentColor.id}</span>*/}
-                    </div>
-                </div>
-            </div>
-        )
-    }
 
 
     render() {
+        const basket = this.props.basket || []
         return (
             <div className="main-block">
                 <div className="content">
@@ -106,10 +97,11 @@ class Contact extends React.Component {
                             />
                         </form>
                     </div>
-                    {this.props.params.id && this.renderItem()}
+                    {this.props.params.id ? <BasketItem clothe={this.props.clothe}/> : basket.map((clothe, index) => <BasketItem key={index} clothe={clothe}/>)}
                 </div>
 
                 <div className="block-bottom">
+                    {this.props.params.id ? null : <Link to={'/basket'} className="btn-mg waves-effect waves-light btn">return to basket</Link>}
                     <a className="waves-effect waves-light btn">send</a>
                 </div>
             </div>
@@ -119,11 +111,9 @@ class Contact extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     clothe: state.clothesById,
+    basket: getBasketClothesWithCount(state)
 })
 
-const mapDispatchToProps = {
-    fetchClothesById,
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contact)
+export default connect(mapStateToProps)(Contact)
 

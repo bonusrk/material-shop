@@ -1,7 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ColorChild from './colorChild';
 
 class Color extends React.Component {
+
+    static propTypes  = {
+        colors: PropTypes.array.isRequired,
+        currentColor: PropTypes.object.isRequired,
+        setCurrentColor: PropTypes.func.isRequired
+
+    }
 
     renderColors(color, index) {
         return (
@@ -11,16 +19,12 @@ class Color extends React.Component {
 
 
     render() {
-        const {color} = this.props
+        const {colors} = this.props
         console.log('render Color');
         return (
-            <div className="product-item__block">
-                <span className="product-item__title">Color</span>
                 <div className="product-set">
-                    {color.map((color, index) => this.renderColors(color, index))}
+                    {colors.map((color, index) => this.renderColors(color, index))}
                 </div>
-            </div>
-
         );
     }
 }

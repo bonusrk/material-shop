@@ -1,27 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SizeChild from './sizeChild';
 
+const Size = ({
+                  sizes,
+                  currentSize,
+                  setCurrentSize
+              }) => {
+    return (
+        <div className="product-set">
+            {sizes.map((size, index) => <SizeChild key={index} currentSize={currentSize} size={size} setCurrentSize={setCurrentSize}/>)}
+        </div>
+    )
+}
 
-export default class Size extends React.Component {
+export default Size
 
-    renderSize(size, index){
-        return(
-            <SizeChild key={index} currentSize={this.props.currentSize} size={size} setCurrentSize={this.props.setCurrentSize}/>
-        )
-    }
-
-
-    render() {
-        const {size} = this.props
-        return (
-
-            <div className="product-item__block">
-                <span className="product-item__title">Size</span>
-                <div className="product-set">
-                    {size.map((size, index) => this.renderSize(size, index))}
-                </div>
-            </div>
-
-        );
-    }
+Size.propTypes = {
+    sizes: PropTypes.array.isRequired,
+    currentSize: PropTypes.object.isRequired,
+    setCurrentSize: PropTypes.func.isRequired
 }

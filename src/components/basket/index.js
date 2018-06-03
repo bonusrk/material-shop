@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+
 import {
     getBasketClothesWithCount,
     getBasketItemsCount,
@@ -13,53 +13,34 @@ import {
 } from '../../actions';
 
 import Total from './total';
+import BasketItem from './basketItem';
 
 class Basket extends React.Component {
 
-    renderBasketItem(clothe, index){
-        return(
-            <div key={index} className="cart__item z-depth-1">
-                <Link  to={`clothes/${clothe.id}`}><div className="cart__img"><img src={clothe.image} /></div></Link>
-                <div className="cart__info">
-                    <Link  to={`clothes/${clothe.id}`}><span className="product__name">{clothe.name}</span></Link>
-                    <span className="product__disc">{clothe.description}</span>
-                    <div className="cart__counter">
-                        <div  onClick={()=> {
-                             if( clothe.count > 1){
-                                 this.props.basketItemMinus(clothe)}
-                             }
-                            }  className={`button minus ${clothe.count === 1 ? 'disabled' : ''}`}/>
-                        <div className="number">{clothe.count}</div>
-                        <div onClick={()=>this.props.addClotheToBasket(clothe)}  className="button plus "/>
-                    </div>
-                    <span className="product__price">${clothe.price}</span>
-                    <div className="product__properties">
-                       <div><span className={'property'}>Color: </span><span style={{backgroundColor : clothe.currentColor.color}}
-                                               className={'product-set__item color '}/></div>
-                        <div><span className={'property'}>Size: </span><span className={'product-set__item size active'}>{clothe.currentSize.name}</span></div>
-                    </div>
-
-                </div>
-                <div onClick={()=>this.props.removeClotheFromBasket(clothe)} className="cart__delete waves-effect waves-light">
-                    <i className="material-icons">delete</i>
-                </div>
-            </div>
-        )
+    constructor(props){
+        super(props)
+        this.removeClotheFromBasket=this.props.removeClotheFromBasket.bind(this)
+        this.basketItemMinus=this.props.basketItemMinus.bind(this)
+        this.addClotheToBasket=this.props.addClotheToBasket.bind(this)
     }
 
     render() {
-        console.log('this.props.basket', this.props.basket);
         const {basket} = this.props
         return (
             <div className="main-block">
                 <div className="content">
                     <div className="cart">{
                         basket.length > 0 ?
-                            basket.map((clothe, index)=> this.renderBasketItem(clothe, index))
+                            basket.map((clothe, index)=> <BasketItem
+                                key={index}
+                                clothe={clothe}
+                                removeClotheFromBasket={this.removeClotheFromBasket}
+                                basketItemMinus={this.basketItemMinus}
+                                addClotheToBasket={this.addClotheToBasket}
+                            />)
                             :
                             <div>Your shopping cart is empty</div>
                     }
-
                     </div>
                 </div>
                 {
@@ -68,10 +49,7 @@ class Basket extends React.Component {
                         :
                         null
                 }
-
-                
             </div>
-
         );
     }
 }

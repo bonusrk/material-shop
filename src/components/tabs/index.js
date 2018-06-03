@@ -1,7 +1,6 @@
 import React from 'react';
 import CategoryList from '../category-list';
 
-
 export default class Tabs extends React.Component {
 
     constructor(props){
@@ -14,10 +13,6 @@ export default class Tabs extends React.Component {
         this.showMan = this.showMan.bind(this, true)
     }
 
-
-  /*  */
-
-
     showWoman(){
         this.setState({category:'woman'})
     }
@@ -25,10 +20,6 @@ export default class Tabs extends React.Component {
     showMan(){
         this.setState({category:'man'})
     }
-
-
-
-
 
     render() {
 
