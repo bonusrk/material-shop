@@ -20,6 +20,10 @@ class ProductItemContainer extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            loading: true
+        }
+
         this.setCurrentColor = this.setCurrentColor.bind(this)
         this.setCurrentSize = this.setCurrentSize.bind(this)
     }
@@ -41,17 +45,25 @@ class ProductItemContainer extends React.Component {
 
     componentDidMount() {
         this.props.fetchClothesById(this.props.params.id)
+        this.setState({
+            loading: false
+        })
     }
 
 
     render() {
+        if (this.state.loading) return null
         const {clothe} = this.props
-        const details = clothe.details || []
-        const color = clothe.color || []
-        const sizes = clothe.size || []
-        const currentColor = clothe.currentColor || {}
-        const currentSize = clothe.currentSize || {}
-        const comments = clothe.comments || []
+        const {
+            details,
+            color,
+            size,
+            currentColor,
+            currentSize,
+            comments
+        } = clothe
+
+
         console.log('render ProductItemContainer');
         return (
             <div className="product-item ">
@@ -62,7 +74,7 @@ class ProductItemContainer extends React.Component {
                         <Color colors={color} currentColor={currentColor} setCurrentColor={this.setCurrentColor}/>
                     </ProductBlock>
                     <ProductBlock title={'Size'}>
-                        <Size sizes={sizes} currentSize={currentSize} setCurrentSize={this.setCurrentSize}/>
+                        <Size sizes={size} currentSize={currentSize} setCurrentSize={this.setCurrentSize}/>
                     </ProductBlock>
                     <div className="product-item__block product-item__line">
                         <Link to={`order/${clothe.id}`} className="waves-effect waves-light btn ">BUY NOW</Link>

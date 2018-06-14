@@ -34,10 +34,10 @@ import {
 } from '../api'
 
 
-export const fetchClothes = () => async dispatch => {
+export const fetchClothes = () => dispatch => {
     dispatch({type: FETCH_CLOTHES_START})
     try {
-        const clothes = await fetchClothesApi()
+        const clothes = fetchClothesApi()
         dispatch({
             type: FETCH_CLOTHES_SUCCESS,
             payload: clothes
@@ -51,10 +51,10 @@ export const fetchClothes = () => async dispatch => {
     }
 }
 
-export const fetchCategories = () => async dispatch => {
+export const fetchCategories = () => dispatch => {
     dispatch({type: FETCH_CATEGORIES_START})
     try {
-        const categories = await fetchCategoriesApi()
+        const categories = fetchCategoriesApi()
         dispatch({
             type: FETCH_CATEGORIES_SUCCESS,
             payload: categories
@@ -69,10 +69,10 @@ export const fetchCategories = () => async dispatch => {
 }
 
 
-export const fetchClothesInCategory = params => async dispatch => {
+export const fetchClothesInCategory = params => dispatch => {
     dispatch({type: FETCH_CLOTHES_IN_CATEGORIES_START})
     try {
-        const clothes = await fetchClothesInCategoryApi()
+        const clothes =  fetchClothesInCategoryApi()
 
         dispatch({
             type: FETCH_CLOTHES_IN_CATEGORIES_SUCCESS,
@@ -89,10 +89,10 @@ export const fetchClothesInCategory = params => async dispatch => {
 }
 
 
-export const fetchClothesById = id => async dispatch => {
+export const fetchClothesById = id =>  dispatch => {
     dispatch({type: FETCH_CLOTHE_BY_ID_START})
     try {
-        const clothe = await fetchClothesByIdApi(id)
+        const clothe =  fetchClothesByIdApi(id)
 
         dispatch({
             type: FETCH_CLOTHE_BY_ID_SUCCESS,

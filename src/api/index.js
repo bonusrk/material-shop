@@ -3,28 +3,19 @@ import clothes from './mockClothes'
 import categories from './mockCategories'
 
 
-export const fetchClothes = async () => {
-    return new Promise(resolve => {
-        resolve(clothes)
-    })
+export const fetchClothes =  () => {
+    return clothes
 }
 
-export const fetchClothesInCategory = async () => {
-    return new Promise(resolve => {
-        resolve(clothes)
-    })
+export const fetchClothesInCategory =  () => {
+    return clothes
 }
 
 
-export const fetchCategories = async () => {
-    return new Promise(resolve => {
-        resolve(categories)
-    })
+export const fetchCategories =  () => {
+    return categories
 }
 
-export const fetchClothesById = async id => {
-    return new Promise((resolve, reject)=> {
-        const clothe = R.find(R.propEq('id', id), clothes)
-        resolve(clothe)
-    })
+export const fetchClothesById = id => {
+    return R.find(R.propEq('id', id), clothes)
 }

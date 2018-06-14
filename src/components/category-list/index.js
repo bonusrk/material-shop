@@ -12,7 +12,12 @@ import CategoryItem from './categoryItem';
 
 class CategoryList extends React.Component {
 
-
+    constructor(props){
+        super(props)
+        this.state = {
+            loading: true
+        }
+    }
      static propTypes  = {
          categories : PropTypes.object.isRequired,
          category : PropTypes.string.isRequired,
@@ -22,11 +27,15 @@ class CategoryList extends React.Component {
     componentDidMount() {
         this.props.fetchCategories()
         this.props.fetchClothes()
+        this.setState({
+            loading:false
+        })
     }
     
 
 
     render() {
+        if (this.state.loading) return null
         const categories =
             R.filter((category) =>
                 category.gender === this.props.category, this.props.categories);
