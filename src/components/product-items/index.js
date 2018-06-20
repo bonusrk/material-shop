@@ -15,6 +15,8 @@ class ProductItems extends React.Component {
     }
 
     render() {
+        if (!this.props.data) return null
+        if(this.props.fetch) return null
         const data = this.props.clothes
         return (
             <div className="content">
@@ -30,7 +32,9 @@ class ProductItems extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => ({
-    clothes: getClothesInCategory(state, ownProps)
+    clothes: getClothesInCategory(state, ownProps),
+    data: state.clothes.data,
+    fetch: state.clothes.fetch
 })
 
 

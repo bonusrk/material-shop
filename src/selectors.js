@@ -7,32 +7,18 @@ export const getCategories = (state) => {
     }
     const newData = R.filter(getMan, categories)
 
-    // const cat = R.compose(newData)(state.categories);
-
     return Object.assign(state, newData);
 }
 
 export const getClothesInCategory = (state, ownProps) => {
-    console.log('ownProps', ownProps);
-    const clothes = Object.values(state.clothes);
-    console.log('clothes', clothes);
+    const clothes = Object.values(state.clothes.data);
     let clothesInCategory = []
     clothes.map((clothe) => {
         clothe.categoryId===ownProps.params.id ? clothesInCategory.push(clothe) : ''})
-    console.log('clothesInCategory', clothesInCategory)
     return clothesInCategory
 }
 
 
-/*export const getClothesInCategory = (state, params) => {
-    const clothes = R.filter((clothe) =>
-    {
-        return clothe.gender === params.id[0] && clothe.category === params.id[1]}  , state.clothes);
-    const data = Object.values(clothes);
-
-    return data
-}*/
-//todo: add clothes
 export const getClotheById = (state, id) => R.prop(id, state.clothesInCategory)
 
 export const getBasketClothesWithCount = state => {

@@ -67,7 +67,6 @@ class ProductItemContainer extends React.Component {
         console.log('render ProductItemContainer');
         return (
             <div className="product-item ">
-
                 <div className="product-item__container z-depth-1">
                     <ProductInfo clothe={clothe}/>
                     <ProductBlock title={'Color'}>

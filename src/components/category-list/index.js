@@ -14,12 +14,10 @@ class CategoryList extends React.Component {
 
     constructor(props){
         super(props)
-        this.state = {
-            loading: true
-        }
+
     }
      static propTypes  = {
-         categories : PropTypes.object.isRequired,
+         categories : PropTypes.object,
          category : PropTypes.string.isRequired,
          fetchCategories: PropTypes.func.isRequired,
          fetchClothes: PropTypes.func.isRequired
@@ -27,15 +25,14 @@ class CategoryList extends React.Component {
     componentDidMount() {
         this.props.fetchCategories()
         this.props.fetchClothes()
-        this.setState({
-            loading:false
-        })
+
     }
     
 
 
     render() {
-        if (this.state.loading) return null
+        if (!this.props.categories) return null
+        if (this.props.fetch) return null
         const categories =
             R.filter((category) =>
                 category.gender === this.props.category, this.props.categories);
@@ -52,7 +49,8 @@ class CategoryList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    categories: state.categories,
+    categories: state.categories.data,
+    fetch: state.categories.fetch
 })
 
 const mapDispatchToProps = {
