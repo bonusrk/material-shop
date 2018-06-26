@@ -20,10 +20,6 @@ class ProductItemContainer extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            loading: true
-        }
-
         this.setCurrentColor = this.setCurrentColor.bind(this)
         this.setCurrentSize = this.setCurrentSize.bind(this)
     }
@@ -32,7 +28,7 @@ class ProductItemContainer extends React.Component {
         addClotheToBasket : PropTypes.func.isRequired,
         changeColor : PropTypes.func.isRequired,
         changeSize : PropTypes.func.isRequired,
-        clothe: PropTypes.object.isRequired
+        clothe: PropTypes.object
     }
 
     setCurrentColor(id) {
@@ -45,15 +41,14 @@ class ProductItemContainer extends React.Component {
 
     componentDidMount() {
         this.props.fetchClothesById(this.props.params.id)
-        this.setState({
-            loading: false
-        })
     }
 
 
     render() {
-        if (this.state.loading) return null
-        const {clothe} = this.props
+        console.log('render');
+        if (!this.props.clothe.data) return null
+        if (this.props.fetch) return null
+        const clothe = this.props.clothe.data
         const {
             details,
             color,
@@ -70,10 +65,16 @@ class ProductItemContainer extends React.Component {
                 <div className="product-item__container z-depth-1">
                     <ProductInfo clothe={clothe}/>
                     <ProductBlock title={'Color'}>
-                        <Color colors={color} currentColor={currentColor} setCurrentColor={this.setCurrentColor}/>
+                        <Color
+                            colors={color}
+                            currentColor={currentColor}
+                            setCurrentColor={this.setCurrentColor}/>
                     </ProductBlock>
                     <ProductBlock title={'Size'}>
-                        <Size sizes={size} currentSize={currentSize} setCurrentSize={this.setCurrentSize}/>
+                        <Size
+                            sizes={size}
+                            currentSize={currentSize}
+                            setCurrentSize={this.setCurrentSize}/>
                     </ProductBlock>
                     <div className="product-item__block product-item__line">
                         <Link to={`order/${clothe.id}`} className="waves-effect waves-light btn ">BUY NOW</Link>
@@ -95,6 +96,7 @@ class ProductItemContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
     clothe: state.clothesById,
+    fetch: state.clothesById.fetch
 })
 
 const mapDispatchToProps = {

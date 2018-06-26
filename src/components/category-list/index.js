@@ -26,6 +26,8 @@ class CategoryList extends React.Component {
         this.props.fetchCategories()
         this.props.fetchClothes()
 
+
+
     }
     
 

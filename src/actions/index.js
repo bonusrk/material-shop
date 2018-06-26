@@ -34,7 +34,7 @@ import {
 } from '../api'
 
 
-export const fetchClothes = () => dispatch => {
+/*export const fetchClothes = () => dispatch => {
     dispatch({type: FETCH_CLOTHES_START})
     try {
         const clothes = fetchClothesApi()
@@ -49,9 +49,33 @@ export const fetchClothes = () => dispatch => {
             error: true
         })
     }
-}
+}*/
+export const fetchClothes = () => dispatch => {
+    dispatch({type: FETCH_CLOTHES_START})
+    return fetch("https://api.myjson.com/bins/yvs0y")
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: FETCH_CLOTHES_SUCCESS,
+                payload: json.data,
+            })
+            return json;
+        })
+        .catch(error => dispatch({
+            type: FETCH_CLOTHES_FAILURE,
+            payload: error,
+        }));
 
-export const fetchCategories = () => dispatch => {
+
+}
+const handleErrors=(response)=> {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+/*export const fetchCategories = () => dispatch => {
     dispatch({type: FETCH_CATEGORIES_START})
     try {
         const categories = fetchCategoriesApi()
@@ -66,6 +90,24 @@ export const fetchCategories = () => dispatch => {
             error: true
         })
     }
+}*/
+
+export const fetchCategories = () => dispatch => {
+    dispatch({type: FETCH_CATEGORIES_START})
+    return fetch("https://api.myjson.com/bins/iv7uq")
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: FETCH_CATEGORIES_SUCCESS,
+                payload: json.categories,
+            })
+            return json;
+        })
+        .catch(error => dispatch({
+            type: FETCH_CATEGORIES_FAILURE,
+            payload: error,
+        }));
 }
 
 
@@ -91,21 +133,24 @@ export const fetchClothesInCategory = params => dispatch => {
 
 export const fetchClothesById = id =>  dispatch => {
     dispatch({type: FETCH_CLOTHE_BY_ID_START})
-    try {
-        const clothe =  fetchClothesByIdApi(id)
-
-        dispatch({
-            type: FETCH_CLOTHE_BY_ID_SUCCESS,
-            payload: clothe,
+    return fetch("https://api.myjson.com/bins/yvs0y")
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: FETCH_CLOTHE_BY_ID_SUCCESS,
+                payload: json.data,
+                id
+            })
+            return json;
         })
-    } catch (err) {
-        dispatch({
+        .catch(error => dispatch({
             type: FETCH_CLOTHE_BY_ID_FAILURE,
-            payload: err,
-            error: true
-        })
-    }
+            payload: error,
+        }));
 }
+
+
 
 
 export const addClotheToBasket = clothe => dispatch => {

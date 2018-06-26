@@ -19,7 +19,7 @@ export const getClothesInCategory = (state, ownProps) => {
 }
 
 
-export const getClotheById = (state, id) => R.prop(id, state.clothesInCategory)
+export const getClotheById = (clothes, id) => R.prop(id, clothes.clothesInCategory)
 
 export const getBasketClothesWithCount = state => {
 

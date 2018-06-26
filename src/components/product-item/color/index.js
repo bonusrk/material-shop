@@ -13,7 +13,10 @@ class Color extends React.Component {
 
     renderColors(color, index) {
         return (
-            <ColorChild key={index} currentColor={this.props.currentColor} color={color} setCurrentColor={this.props.setCurrentColor} />
+            <ColorChild key={index}
+                        currentColor={this.props.currentColor}
+                        color={color}
+                        setCurrentColor={this.props.setCurrentColor} />
         )
     }
 
