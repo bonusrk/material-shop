@@ -110,7 +110,7 @@ class Contact extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    clothe: state.clothesById,
+    clothe: state.clothesById.data,
     basket: getBasketClothesWithCount(state)
 })
 
