@@ -26,30 +26,10 @@ import {
 } from '../actionTypes'
 
 
-import {
-    fetchClothes as fetchClothesApi,
-    fetchCategories as fetchCategoriesApi,
-    fetchClothesInCategory as fetchClothesInCategoryApi,
-    fetchClothesById as fetchClothesByIdApi
-} from '../api'
 
 
-/*export const fetchClothes = () => dispatch => {
-    dispatch({type: FETCH_CLOTHES_START})
-    try {
-        const clothes = fetchClothesApi()
-        dispatch({
-            type: FETCH_CLOTHES_SUCCESS,
-            payload: clothes
-        })
-    } catch (err) {
-        dispatch({
-            type: FETCH_CLOTHES_FAILURE,
-            payload: err,
-            error: true
-        })
-    }
-}*/
+
+
 export const fetchClothes = () => dispatch => {
     dispatch({type: FETCH_CLOTHES_START})
     return fetch("https://api.myjson.com/bins/yvs0y")
@@ -75,22 +55,7 @@ const handleErrors=(response)=> {
     }
     return response;
 }
-/*export const fetchCategories = () => dispatch => {
-    dispatch({type: FETCH_CATEGORIES_START})
-    try {
-        const categories = fetchCategoriesApi()
-        dispatch({
-            type: FETCH_CATEGORIES_SUCCESS,
-            payload: categories
-        })
-    } catch (err) {
-        dispatch({
-            type: FETCH_CATEGORIES_FAILURE,
-            payload: err,
-            error: true
-        })
-    }
-}*/
+
 
 export const fetchCategories = () => dispatch => {
     dispatch({type: FETCH_CATEGORIES_START})
@@ -111,24 +76,6 @@ export const fetchCategories = () => dispatch => {
 }
 
 
-export const fetchClothesInCategory = params => dispatch => {
-    dispatch({type: FETCH_CLOTHES_IN_CATEGORIES_START})
-    try {
-        const clothes =  fetchClothesInCategoryApi()
-
-        dispatch({
-            type: FETCH_CLOTHES_IN_CATEGORIES_SUCCESS,
-            payload: clothes,
-            params: params
-        })
-    } catch (err) {
-        dispatch({
-            type: FETCH_CLOTHES_IN_CATEGORIES_FAILURE,
-            payload: err,
-            error: true
-        })
-    }
-}
 
 
 export const fetchClothesById = id =>  dispatch => {
