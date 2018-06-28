@@ -9,7 +9,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import {syncHistoryWithStore} from 'react-router-redux'
-import {Router, Route, browserHistory} from 'react-router'
+import {Router, Route, browserHistory, hashHistory} from 'react-router'
 import {Provider} from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
@@ -26,7 +26,8 @@ const store = createStore(reducers, composeWithDevTools(
     applyMiddleware(thunk)
 ))
 
-const history = syncHistoryWithStore(browserHistory, store)
+const historyType = process.env.NODE_ENV !== 'production' ? hashHistory : browserHistory
+const history = syncHistoryWithStore(historyType, store)
 
 
 ReactDOM.render(

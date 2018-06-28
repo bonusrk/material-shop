@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --mode development --history-api-fallback",
+    "start": "webpack-dev-server --inline --hot --mode development --history-api-fallback --progress",
     "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "fix": "webpack --progress --profile --colors --display-error-details --display-cached",
-    "build": "webpack --mode=production"
+    "build": "webpack --config webpack.config.js --mode development --progress",
+    "build:prod": "webpack --config webpack.config.js --mode production --progress"
   },
   "repository": {
     "type": "git",
